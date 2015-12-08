@@ -1,0 +1,50 @@
+<carousel interval="5000" no-wrap="noWrapSlides">
+    <slide ng-repeat="slide in slides" active="slide.active">
+        <!-- 1178 x 500 -->
+        <img ng-src="{{slide.image}}">
+    </slide>
+</carousel>
+<div class="row">
+    <div class="col-sm-9 col-sm-push-3">
+        <div class="panel">
+            <div class="panel-heading">
+                <h3 class="panel-title">Latest News</h3>
+            </div>
+            <div class="panel-body panel-body-home">
+                <div class="news-item" ng-repeat="item in socialMedia | limitTo: limit.news" ng-class="{'news-item-last':$last}">
+                    <div class="news-heading">
+                        <a href="{{item.url}}" target="_blank">{{item.date | date:'MMMM d, yyyy h:mm'}}</a>
+                        <a href="{{item.url}}" target="_blank"> <img src="img/twitter_inverted.png" ng-show="item.platform == 'Twitter'"> <img src="img/facebook_inverted.png" ng-show="item.platform == 'Facebook'"></a>
+                    </div>
+                    <img ng-src="{{item.imgUrl}}" ng-show="item.imgUrl" class="img-responsive">
+                    <iframe id="ytplayer" type="text/html" ng-src="{{item.youtubeEmbedUrl}}" frameborder="0" / class="embed-responsive-item" ng-show="item.youtubeUrl"></iframe>
+                    <p>{{item.text}}</p>
+                    <a href="{{item.soundcloudUrl}}" target="_blank" ng-show="item.soundcloudUrl" class="soundcloud-link-home"><img src="img/soundcloud_inverted.png" class="soundcloud-icon-home">SoundCloud Link</a>
+                    <a href="{{item.byrdUrl}}" target="_blank" ng-show="item.byrdUrl" class="byrd-link">Link</a>
+                </div>
+                <a class="more-items" ng-click="fiveMore('news', socialMedia)" ng-show="fiveMoreBool.news && socialMedia.length > 5"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Show {{fiveMoreNumber.news}} More</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3 col-sm-pull-9">
+        <div class="panel">
+            <div class="panel-heading">
+                <h3 class="panel-title">Upcoming Gigs</h3>
+            </div>
+            <div class="panel-body panel-body-home">
+                <h4 ng-hide="upcomingGigs">No performances scheduled, please check back later.</h4>
+                <div class="gig" ng-repeat="gig in upcomingGigs | limitTo: limit.calendar"  ng-class="{'news-item-last':$last}" ng-cloak>
+                    <h4>{{gig.start.dateTime | date: 'EEE MMM d, yyyy'}}</h4>
+                    <h4>{{gig.start.dateTime | date: 'h:mm a'}} - {{gig.end.dateTime | date: 'h:mm a'}}</h4>
+                    <h4 class="gig-title">{{gig.summary}}</h4>
+                    <a href="{{gig.place_details.website}}" target="_blank" class="gig-venue" ng-show="gig.place_details.website">{{gig.place_details.name}}</a>
+                    <h4 ng-hide="gig.place_details.website">{{gig.place_details.result.name}}</h4>
+                    <h4>{{gig.address_breakdown.city}}, {{gig.address_breakdown.state}}</h4>
+                    <a href="/calendar" ng-click="moreDetails($index)">More Details <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+                </div>
+                <a class="more-items" ng-click="fiveMore('calendar', upcomingGigs)" ng-show="upcomingGigs.length > 5 && fiveMoreBool.calendar"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Show {{fiveMoreNumber.calendar}} More</a>
+            </div>
+        </div>
+    </div>
+
+</div>

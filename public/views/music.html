@@ -1,0 +1,26 @@
+<div class="row music-row" ng-repeat="album in albums">
+    <div class="col-xs-12">
+        <h3 class="album-title">{{album.albumName}}</h3>
+    </div>
+    <div class="col-sm-3 col-xs-12">
+        <img ng-src="{{album.albumImg}}" class="img-responsive album-img">
+    </div>
+    <div class="col-sm-9 col-xs-12">
+        <div class="panel">
+            <div class="calendar-item music-item" ng-repeat="track in album.tracks" ng-click="playTrack($index, $parent.$index)" ng-class="{'active-calendar-item': currentAudio.track == $index && currentAudio.album == $parent.$index}">
+                <div class="row">
+                    <div class="col-xs-1">
+                        <span class="glyphicon glyphicon-play"></span>
+                    </div>
+                    <div class="col-xs-9 track-column">
+                        <h3>{{track.trackName}}</h3>
+                    </div>
+                    <div class="col-xs-1 track-length">
+                        <h3>{{track.trackLength}}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <textarea ng-show="album.albumDescription.length" class="album-description" disabled elastic>{{album.albumDescription}}</textarea>
+    </div>
+</div>

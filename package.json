@@ -1,0 +1,14 @@
+{
+    "name": "austinByrd",
+    "main": "server.js",
+    "dependencies": {
+        "body-parser": "^1.14.1",
+        "codebird": "2.6.0",
+        "express": "^4.13.3",
+        "node-schedule": "^0.2.9",
+        "nodemailer": "^1.7.0",
+        "nodemailer-mailgun-transport": "1.0.1",
+        "q": "^1.4.1",
+        "xhr2": "^0.1.3"
+    }
+}

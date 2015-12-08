@@ -1,0 +1,91 @@
+<div off-click="close()">
+    <div class="panel calendar-panel" ng-show="calendar.upcomingGigs.length">
+        <div class="panel-heading" ng-click="close()">
+            <h3 class="panel-title">Upcoming Gigs</h3>
+        </div>
+        <div class="panel-body calendar-panel-body">
+            <div class="calendar-item" id="calendar-upcoming-{{$index}}" ng-class="{'active-calendar-item': isOpenUpcomingNumber == $index}" ng-mouseup="open($index, true)" ng-repeat="gig in calendar.upcomingGigs">
+                <div class="row calendar-headings">
+                    <div class="calendar-column col-xs-3">
+                        <h3>{{gig.summary}}</h3>
+                    </div>
+                    <div class="calendar-column col-xs-2">
+                        <h3>{{gig.start.dateTime | date: 'EEE MMM d, yyyy'}}</h3>
+                    </div>
+                    <div class="calendar-column col-xs-2">
+                        <h3>{{gig.start.dateTime | date: 'h:mm a'}}<span ng-show="gig.end.dateTime.length"> - {{gig.end.dateTime | date: 'h:mm a'}}</span></h3>
+                    </div>
+                    <div class="calendar-column col-xs-2">
+                        <a href="{{gig.place_details.website}}" target="_blank" ng-mousedown="linkClicked($index, false)" ng-show="gig.place_details.website.length">{{gig.place_details.name}}</a>
+                        <h3 ng-hide="gig.place_details.website.length">{{gig.place_details.name}}</h3>
+                    </div>
+                    <div class="calendar-column col-xs-2">
+                        <h3>{{gig.address_breakdown.city}}, {{gig.address_breakdown.state}}</h3>
+                    </div>
+                    <div class="calendar-column col-xs-1">
+                        <span class="glyphicon " ng-class="{'glyphicon-chevron-right': isOpenUpcomingNumber != $index, 'glyphicon-chevron-down': isOpenUpcomingNumber == $index}" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class="row calendar-info" ng-class="{open: isOpenUpcomingNumber == $index}">
+                    <div class="col-sm-7">
+                        <h4 ng-show="gig.description.length">Details:</h4>
+                        <textarea disabled elastic ng-show="gig.description.length">{{gig.description}}</textarea>
+                        <h4>Location:</h4>
+                        <a href="{{gig.place_details.website}}" target="_blank" class="calendar-venue-link" ng-mousedown="linkClicked($index, false)" ng-show="gig.place_details.website">{{gig.place_details.name}}</a>
+                        <h5>{{gig.address_breakdown.street_number}} {{gig.address_breakdown.street}}</h5>
+                        <h5>{{gig.address_breakdown.city}}, {{gig.address_breakdown.state}}</h5>
+                        <h5>{{gig.address_breakdown.zip}}</h5>
+                    </div>
+                    <div class="col-sm-5">
+                        <a ng-href="{{mapLinkUrl(gig.place_details)}}" target="_blank" ng-mousedown="linkClicked($index, false)" pull-down><img ng-src="{{staticMapUrl(gig.place_details.formatted_address)}}" class="img-responsive"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="calendar-panel-spacer" ng-click="close()"></div>
+    <div class="panel" ng-show="calendar.pastGigs.length">
+        <div class="panel-heading" ng-click="close()">
+            <h3 class="panel-title">Past Gigs</h3>
+        </div>
+        <div class="panel-body calendar-panel-body">
+            <div class="calendar-item" ng-class="{'active-calendar-item': isOpenPastNumber == $index}" ng-mouseup="open($index, false)" ng-repeat="gig in calendar.pastGigs">
+                <div class="row calendar-headings">
+                    <div class="calendar-column col-xs-3">
+                        <h3>{{gig.summary}}</h3>
+                    </div>
+                    <div class="calendar-column col-xs-2">
+                        <h3>{{gig.start.dateTime | date: 'EEE MMM d, yyyy'}}</h3>
+                    </div>
+                    <div class="calendar-column col-xs-2">
+                        <h3>{{gig.start.dateTime | date: 'h:mm a'}}<span ng-show="gig.end.dateTime.length"> - {{gig.end.dateTime | date: 'h:mm a'}}</span></h3>
+                    </div>
+                    <div class="calendar-column col-xs-2">
+                        <a href="{{gig.place_details.website}}" target="_blank" ng-mousedown="linkClicked($index, false)" ng-show="gig.place_details.website.length">{{gig.place_details.name}}</a>
+                        <h3 ng-hide="gig.place_details.website.length">{{gig.place_details.name}}</h3>
+                    </div>
+                    <div class="calendar-column col-xs-2">
+                        <h3>{{gig.address_breakdown.city}}, {{gig.address_breakdown.state}}</h3>
+                    </div>
+                    <div class="calendar-column col-xs-1">
+                        <span class="glyphicon " ng-class="{'glyphicon-chevron-right': isOpenPastNumber != $index, 'glyphicon-chevron-down': isOpenPastNumber == $index}" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class="row calendar-info" ng-class="{open: isOpenPastNumber == $index}">
+                    <div class="col-sm-7">
+                        <h4 ng-show="gig.description.length">Details:</h4>
+                        <textarea disabled elastic ng-show="gig.description.length">{{gig.description}}</textarea>
+                        <h4>Location:</h4>
+                        <a href="{{gig.place_details.website}}" target="_blank" class="calendar-venue-link" ng-mousedown="linkClicked($index, false)" ng-show="gig.place_details.website.length">{{gig.place_details.name}}</a>
+                        <h5>{{gig.address_breakdown.street_number}} {{gig.address_breakdown.street}}</h5>
+                        <h5>{{gig.address_breakdown.city}}, {{gig.address_breakdown.state}}</h5>
+                        <h5>{{gig.address_breakdown.zip}}</h5>
+                    </div>
+                    <div class="col-sm-5">
+                        <a ng-href="{{mapLinkUrl(gig.place_details)}}" target="_blank" ng-mousedown="linkClicked($index, false)" pull-down><img ng-src="{{staticMapUrl(gig.place_details.formatted_address)}}" class="img-responsive"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

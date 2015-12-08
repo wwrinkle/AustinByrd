@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="img/favicon.ico">
+    <title>Austin Byrd | Pianist, Composer, Educator</title>
+    <link href="cs/bootstrap.min.css" rel="stylesheet">
+    <link href="cs/stylesheet.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Cabin+Condensed:400,600' rel='stylesheet' type='text/css'>
+    <script src="js/angular.min.js"></script>
+    <script src="js/angular-route.min.js"></script>
+    <script src="js/angular-animate.min.js"></script>
+    <script src="js/angular-scroll.min.js"></script>
+    <script src="js/ui-bootstrap-tpls-0.13.3.min.js"></script>
+    <base href="/"></base>
+</head>
+
+<body ng-app="AustinByrdApp">
+    <div ng-controller="NavController">
+        <div class="nav-fixed" id="nav-fixed">
+            <nav class="navbar navbar-default">
+                <div class="container nav-container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" aria-expanded="false" ng-class="{'visible-nav-element': !collapsible}" ng-click="expand()">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="/austinbyrd/" ng-class="{'navbar-brand-collapsible': !collapsible}"><span>Austin Byrd</span> Pianist, Composer, Educator</a>
+                        <div class="social-icons" ng-class="{'hidden-nav-element': !collapsible}">
+                            <a href="https://www.facebook.com/austinbyrdjazz" target="_blank"><img src="img/facebook.png"></a>
+                            <a href="https://twitter.com/austinbyrdjazz" target="_blank"><img src="img/twitter.png"></a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <div class="container">
+                <ul class="nav nav-pills" ng-class="{'collapsed-nav-pills': !collapsible, 'expanded-nav-pills': expanded}" ng-click="close()">
+                    <!-- float:none -->
+                    <li role="presentation" ng-class="{active: currentTab == 1}"><a href="/">Home</a></li>
+                    <li role="presentation" ng-class="{active: currentTab == 2}"><a href="/about">About</a></li>
+                    <li role="presentation" ng-class="{active: currentTab == 3}"><a href="/calendar">Calendar</a></li>
+                    <li role="presentation" ng-class="{active: currentTab == 4}"><a href="/music">Music</a></li>
+                    <li role="presentation" ng-class="{active: currentTab == 5}"><a href="/videos">Videos</a></li>
+                    <li role="presentation" ng-class="{active: currentTab == 6}"><a href="/contact">Contact</a></li>
+                    <div class="connect-imgs" ng-class="{'visible-connect-imgs': !collapsible}">
+                        <h4>Connect:</h4>
+                        <div>
+                            <a href="https://www.facebook.com/austinbyrdjazz" target="_blank"><img src="img/facebook.png"></a>
+                            <a href="https://twitter.com/austinbyrdjazz" target="_blank"><img src="img/twitter.png"></a>
+                        </div>
+                    </div>
+
+                </ul>
+            </div>
+        </div>
+        <div class="container view" ng-view ng-class="{'collapsed-view': !collapsible}"></div>
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <div class="audio-player" id="audio-player" ng-controller="AudioController" ng-mousemove="mouseMove($event)" ng-mouseup="playHeadUp()" ng-mouseleave="playHeadUp()">
+                <div class="audio-player-line">
+                    <h4>{{albums[currentAudio.album].tracks[currentAudio.track].trackName}}<span class="audio-title-seperater">|</span>{{trackPosition | secondsToDateTime | date:'m:ss'}} / {{trackDuration | secondsToDateTime | date:'m:ss'}}</h4>
+                    <a><span class="glyphicon" ng-class="{'glyphicon-volume-up': muteBool, 'glyphicon-volume-off': !muteBool}" ng-click="mute()" aria-hidden="true"></span></a>
+                </div>
+                <div class="audio-player-line">
+                    <a><span class="glyphicon glyphicon-step-backward" ng-click="back()" aria-hidden="true"></span></a>
+                    <a><span class="glyphicon" ng-class="{'glyphicon-play': playBool, 'glyphicon-pause': !playBool}" ng-click="play()" aria-hidden="true"></span></a>
+                    <a><span class="glyphicon glyphicon-step-forward" ng-click="forward()" aria-hidden="true"></span></a>
+                </div>
+                <div class="audio-player-line">
+                    <div class="track" id="track" ng-click="positionChange($event)">
+                        <div class="play-head" id="play-head" ng-style="playHeadStyle" ng-mousedown="playHeadDown()"></div>
+                    </div>
+                </div>
+                <audio id="audio" preload="metadata">
+                    <source ng-src="{{albums[currentAudio.album].tracks[currentAudio.track].mp3Url}}" type="audio/mpeg">
+                    <source ng-src="{{albums[currentAudio.album].tracks[currentAudio.track].oggUrl}}" type="audio/ogg">
+                    <source ng-src="{{albums[currentAudio.album].tracks[currentAudio.track].aacUrl}}" type="audio/aac">
+                </audio>
+            </div>
+        </div>
+    </footer>
+    <div id="hidden"></div>
+    <script src="js/app.js"></script>
+</body>
+
+</html>

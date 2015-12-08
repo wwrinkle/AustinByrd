@@ -1,0 +1,8 @@
+<div class="row video-row">
+    <div class="col-xs-6 col-sm-4 video-item" ng-repeat="video in videos" ng-click="open($index)">
+        <img ng-src="http://img.youtube.com/vi/{{video.id}}/mqdefault.jpg" class="img-responsive">
+        <h3>{{video.title}}</h3>
+        <p>{{video.description}}</p>
+        <a href="{{video.url}}" target="_blank"><img src="img/youtube_inverted.png">Link</a>
+    </div>
+</div>

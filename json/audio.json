@@ -1,0 +1,31 @@
+[{
+    "albumName": "Byrd Brains",
+    "albumImg": "img/byrd_album_3.jpg",
+    "albumDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra ex elementum lorem rhoncus cursus. In finibus ligula ac neque molestie, sodales rhoncus ex sagittis. Maecenas ornare ut neque aliquet lacinia. Phasellus elit nulla, ullamcorper quis tincidunt sed, viverra vel augue. Nulla id rhoncus mauris, nec fermentum metus. Donec auctor ultrices odio in hendrerit. Suspendisse ullamcorper dignissim nisi in faucibus. Pellentesque quis turpis nec ipsum accumsan feugiat. Nam eros sapien, consequat et neque id, luctus tincidunt neque. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis quis vulputate mi. Cras turpis nisi, pharetra consequat tempus vel, sagittis lacinia purus. Ut vehicula viverra elit et lacinia. Nullam urna dui, ultrices quis enim sed, vehicula tristique ex.",
+    "tracks": [{
+        "trackName": "Bernstein's Dilemma",
+        "oogUrl": "audio/Bernstein's Dilemma.ogg",
+        "mp3Url": "audio/Bernstein's Dilemma.mp3",
+        "aacUrl": "audio/Bernstein's Dilemma.aac"
+    }, {
+        "trackName": "January's Palette",
+        "oogUrl": "audio/January's Palette.ogg",
+        "mp3Url": "audio/January's Palette.mp3",
+        "aacUrl": "audio/January's Palette.aac"
+    },{
+        "trackName": "Pier-ing Around",
+        "oogUrl": "audio/Pier-ing Around.ogg",
+        "mp3Url": "audio/Pier-ing Around.mp3",
+        "aacUrl": "audio/Pier-ing Around.aac"
+    },{
+        "trackName": "Someone, Somewhere",
+        "oogUrl": "audio/Someone, Somewhere.ogg",
+        "mp3Url": "audio/Someone, Somewhere.mp3",
+        "aacUrl": "audio/Someone, Somewhere.aac"
+    },{
+        "trackName": "Title Wave",
+        "oogUrl": "audio/Title Wave.ogg",
+        "mp3Url": "audio/Title Wave.mp3",
+        "aacUrl": "audio/Title Wave.aac"
+    }]
+}]
