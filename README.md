@@ -34,7 +34,7 @@ Dates, times, titles, and descriptions are pulled from the Google Calendar API. 
 
 ## Thanks for taking a look
 
-Any comments, criticisms and suggestions are welomed.
+Any comments, criticisms and suggestions are welcomed.
 
 Best,
 
