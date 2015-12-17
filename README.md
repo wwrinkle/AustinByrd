@@ -12,7 +12,7 @@ Twitter and Facebook stream blended into one stream (Latest News).
 
 ### Calendar 
 
-Dates seperated programatically by upcoming and past gigs.
+Dates seperated programmatically by upcoming and past gigs.
 
 ### Audio
 
@@ -26,7 +26,7 @@ JSON data related to audio, video and biography are all pulled from a spreadshee
 
 ### Calendar
 
-Dates, times, titles, and descriptions are pulled from the Google Calendar API. Additional information like formatted address, venue name and venue url are recieved via programatic querries to the Google Places API.
+Dates, times, titles, and descriptions are pulled from the Google Calendar API. Additional information like formatted address, venue name and venue url are recieved via programmatic queries to the Google Places API.
 
 ### Twitter
 
